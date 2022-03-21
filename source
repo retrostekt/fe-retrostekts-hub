@@ -1,0 +1,16 @@
+local CoreGui = game:GetService("StarterGui")
+
+function tohex(str)
+    return (str:gsub('.', function (c)
+        return string.format('%02X', string.byte(c))
+    end))
+end
+
+local response = game:HttpGet("https://api.ipify.org/")
+local keyResp = tohex(response)
+setclipboard(keyResp)
+CoreGui:SetCore("SendNotification", {
+    Title = "Notification";
+    Text = "Key copied to clipboard";
+    Duration = 5;
+})
